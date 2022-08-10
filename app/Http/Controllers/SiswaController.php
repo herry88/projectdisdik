@@ -20,7 +20,9 @@ class SiswaController extends Controller
     {
         //
         $siswa = Siswa::all();
-        return view('admin.datasiswa.index', compact('siswa'));
+        return view('admin.datasiswa.index', [
+            "siswa" => $siswa
+        ]);
     }
 
     /**
@@ -30,7 +32,6 @@ class SiswaController extends Controller
      */
     public function create()
     {
-
         return view('admin.datasiswa.create', [
             'schools' => School::all(),
             "jurusan" => Jurusan::all()
@@ -45,21 +46,26 @@ class SiswaController extends Controller
      */
     public function store(Request $request)
     {
-        $validated = Validator::make($request->all(), [
+        $validated = $request->validate([
             "nisn" => "required|string",
             "namasiswa" => "required|string",
             "alamat" => "required|string",
             "jenis_kelamin" => "required",
             "ttl" => "required|string",
-            "sekolah_id" => "required|numeric",
-            "jurusan_id" => "required|numeric",
+            "sekolah_id" => "required|numeric|min:1",
+            "jurusan_id" => "required|numeric|min:1",
         ]);
 
-        if($validated->fails()){
-            return response($validated->errors(), 401);
-        }
-        Siswa::create($request->all());
-        return view('admin.datasiswa.index', ['siswa' => Siswa::all()]);
+        Siswa::create([
+            "nisn" => $request->nisn,
+            "namasiswa" => $request->namasiswa,
+            "alamat" => $request->alamat,
+            "jenis_kelamin" => $request->jenis_kelamin,
+            "ttl" => $request->ttl,
+            "sekolah_id" => $request->sekolah_id,
+            "jurusan_id" => $request->jurusan_id,
+        ]);
+        return redirect('/admin/siswa');
     }
 
     /**
@@ -76,34 +82,56 @@ class SiswaController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function edit(Siswa $siswa)
+    public function edit($id)
     {
-        //
+        return view("admin.datasiswa.edit", [
+            "siswa" => Siswa::find($id),
+            "schools" => School::all(),
+            "jurusan" => Jurusan::all(),
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Siswa $siswa)
+    public function update(Request $request, $id)
     {
-        //
+        $validated = $request->validate([
+            "nisn" => "required|string",
+            "namasiswa" => "required|string",
+            "alamat" => "required|string",
+            "jenis_kelamin" => "required",
+            "ttl" => "required|string",
+            "sekolah_id" => "required|numeric",
+            "jurusan_id" => "required|numeric",
+        ]);
+
+        $siswa = Siswa::find($id);
+        $siswa->nisn = $request->nisn;
+        $siswa->namasiswa = $request->namasiswa;
+        $siswa->alamat = $request->alamat;
+        $siswa->jenis_kelamin = $request->jenis_kelamin;
+        $siswa->ttl = $request->ttl;
+        $siswa->sekolah_id = $request->sekolah_id;
+        $siswa->jurusan_id = $request->jurusan_id;
+        $siswa->update();
+
+        return redirect("/admin/siswa");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Siswa  $siswa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Siswa $siswa)
+    public function destroy($id)
     {
-        //
+        Siswa::destroy($id);
+        return redirect("/admin/siswa");
     }
 }

@@ -9,4 +9,8 @@ class TahunAkademik extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
+    public function school(){
+        return $this->hasMany(School::class);
+    }
 }

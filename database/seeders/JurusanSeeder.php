@@ -18,15 +18,12 @@ class JurusanSeeder extends Seeder
         $data = [
             [
                 "nama" => "Rekayasa Perangkat Lunak",
-                "keterangan" => "RPL"
             ],
             [
                 "nama" => "Teknik Komputer dan Jaringan",
-                "keterangan" => "TKJ"
             ],
             [
                 "nama" => "Multimedia",
-                "keterangan" => "MM"
             ],
         ];
 

@@ -38,8 +38,7 @@ Route::prefix('admin')->group(function () {
     Route::resource("siswa", SiswaController::class);
 
     //sekolah PK
-    Route::get('sekolah-pk', [SchoolController::class, 'index'])->name('sekolah.index');
-    Route::get('sekolah-pk-create', [SchoolController::class, 'create'])->name('sekolah.create');
+    Route::resource('sekolah-pk', SchoolController::class);
 
     //industri module
     Route::resource('industri', IndustriController::class);

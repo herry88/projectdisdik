@@ -1,39 +1,48 @@
 @extends('main')
 
 @section('title')
-    <title>Data Industri</title>
+    <title>Data Siswa</title>
 @endsection
 
 @section('content')
     <section class="section">
         <div class="section-header">
-            <h1>Data siswa</h1>
+            <h1>Tambah Data siswa</h1>
         </div>
         <div class="section-body">
             <div class="card">
-                <div class="card-header">
-                    <h4>Data siswa</h4>
-                </div>
                 <div class="card-body">
                     <form action="/admin/siswa" method="post">
                         @csrf
                         @method('POST')
                         <div class="form-group">
                             <label for="nisn">NISN :</label>
-                            <input type="text" name="nisn" class="form-control" placeholder="NISN">
+                            <input type="text" name="nisn" class="form-control" placeholder="NISN" required>
+                            @error('nisn')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="namasiswa">Nama Siswa :</label>
-                            <input type="text" name="namasiswa" class="form-control" placeholder="Nama siswa">
+                            <input type="text" name="namasiswa" class="form-control" placeholder="Nama siswa" required>
+                            @error('namasiswa')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-group">
                             <label for="alamat">Alamat :</label>
-                            <input type="text" name="alamat" class="form-control" placeholder="Alamat">
+                            <input type="text" name="alamat" class="form-control" placeholder="Alamat" required>
+                            @error('alamat')
+                                <p class="text-danger">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="form-group">
-                            <label for="alamat">Tempat Tanggal Lahir :</label>
-                            <input type="text" name="ttl" class="form-control" placeholder="Contoh : Jakarta, 22 Agustus 2000">
+                            <label for="ttl">Tempat Tanggal Lahir :</label>
+                            <input type="text" name="ttl" class="form-control" placeholder="Contoh : Jakarta, 22 Agustus 2000" required>
                         </div>
+                        @error('ttl')
+                                <p class="text-danger">{{ $message }}</p>
+                        @enderror
                         <div class="form-group">
                             <label for="Jenis_kelamin">Jenis Kelamin :</label>
                             <div class="form-check form-check-inline ">
@@ -44,50 +53,32 @@
                                 <input class="form-check-input" type="radio" name="jenis_kelamin" value="perempuan" id="perempuan">
                                 <label class="form-check-label" for="perempuan">Perempuan</label>
                             </div>
+                            @error('jenis_kelamin')
+                                <p class="text-danger">Pilih Jenis Kelamin !</p>
+                            @enderror
                         </div>
                         <select class="form-control mb-4" aria-label="Default select example" name="sekolah_id">
-                            <option selected>Pilih Sekolah</option>
-                            {{-- @foreach ($schools as $school) --}}
-                                
-                            <option value="1">SMKN 1 Jakarta</option>
-                            <option value="2">SMKN 2 Jakarta</option>
-                            <option value="3">SMKN 3 Jakarta</option>
-                            {{-- @endforeach --}}
+                            <option selected value="0">Pilih Sekolah</option>
+                            @foreach ($schools as $school)   
+                                <option value="{{ $school->id }}">{{ $school->namasekolah }}</option>
+                            @endforeach
                         </select>
+                        @error('sekolah_id')
+                            <p class="text-danger">Pilih Sekolah !</p>
+                        @enderror
                         <select class="form-control mb-3" aria-label="Default select example" name="jurusan_id">
-                            <option selected>Pilih Jurusan</option>
-                            {{-- @foreach ($jurusan as $j) --}}
-                                
-                            <option value="1">Rekayasa Perangkat Lunak</option>
-                            <option value="2">TKJ</option>
-                            <option value="3">MM</option>
-                            {{-- @endforeach --}}
+                            <option selected value="0">Pilih Jurusan</option>
+                            @foreach ($jurusan as $j)
+                                <option value="{{ $j->id }}">{{ $j->nama }}</option>
+                            @endforeach
                         </select>
-                        <button class="btn btn-primary mb-3" type="submit">Tambah</button>
+                        @error('jurusan_id')
+                            <p class="text-danger">Pilih Jurusan !</p>
+                        @enderror
+                        <button class="btn btn-primary mb-3" type="submit">Simpan</button>
                     </form>
                 </div>
             </div>
         </div>
     </section>
 @endsection
-
-
-{{-- <div class="row">
-                <div class="col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Data Industri</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label for="">Nama</label>
-                                <input type="text" class="form-control" placeholder="Nama">
-                                <label for="">Alamat</label>
-                                <input type="text" class="form-control" placeholder="Nama">
-                                <label for="">No Telepon</label>
-                                <input type="text" class="form-control" placeholder="Nama">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
