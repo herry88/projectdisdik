@@ -9,7 +9,7 @@
     <ul class="sidebar-menu">
         <li class="menu-header">Dashboard</li>
         <li class="nav-item ">
-            <a href="#" class="nav-link "><i class="fas fa-fire"></i><span>Dashboard</span></a>
+            <a href="{{ route('dashboard.index') }}" class="nav-link "><i class="fas fa-fire"></i><span>Dashboard</span></a>
 
         </li>
         <li class="menu-header">Data Master</li>
@@ -21,7 +21,7 @@
                 <li><a class="nav-link" href="{{ route('jurusan.index') }}">Jurusan</a></li>
                 <li><a class="nav-link" href="{{ route('tahun-akademik.index') }}">Tahun Akademik</a></li>
                 <li><a href="{{ route('siswa.index') }}" class="nav-link">Data Siswa</a></li>
-                <li><a class="nav-link" href="{{ route('sekolah.index') }}">Sekolah PK </a></li>
+                <li><a class="nav-link" href="{{ route('sekolah-pk.index') }}">Sekolah PK </a></li>
                 <li><a class="nav-link" href="{{ route('industri.index') }}">Industri</a></li>
 
             </ul>

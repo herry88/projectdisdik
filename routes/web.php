@@ -8,8 +8,13 @@ use App\Http\Controllers\SiswaController;
 use App\Http\Controllers\WilayahDKIController;
 use App\Http\Controllers\DokumenController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Controller;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
 Route::prefix('admin')->group(function () {
+    //dashboard
+    Route::get('dashboard', [Controller::class, 'index'])->name('dashboard.index') ;
+    
     //wilayah
     Route::get('wilayah-dki', [WilayahDKIController::class, 'index'])->name('wilayah.index');
     Route::get('wilayah-dki-create', [WilayahDKIController::class, 'create'])->name('wilayah.create');
@@ -33,14 +38,14 @@ Route::prefix('admin')->group(function () {
     Route::resource("siswa", SiswaController::class);
 
     //sekolah PK
-    Route::get('sekolah-pk', [SchoolController::class, 'index'])->name('sekolah.index');
-    Route::get('sekolah-pk-create', [SchoolController::class, 'create'])->name('sekolah.create');
+    Route::resource('sekolah-pk', SchoolController::class);
 
     //industri module
     Route::resource('industri', IndustriController::class);
 
-    Route::group(['prefix' => 'data-dokumen'], function() {
+    Route::group(['prefix' => 'data-dokumen'], function () {
         Route::get('/', [DokumenController::class, 'index'])->name('datadokumen.index');
         Route::get('/task/{id}', [DokumenController::class, 'show'])->name('datadokumen.show');
+        Route::post('/task/sent', [DokumenController::class, 'store'])->name('datadokumen.store');
     });
 });

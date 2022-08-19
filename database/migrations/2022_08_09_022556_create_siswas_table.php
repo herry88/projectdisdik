@@ -22,8 +22,8 @@ return new class extends Migration
             $table->string('ttl', 100)->nullable();
             $table->unsignedBigInteger('sekolah_id');
             $table->unsignedBigInteger('jurusan_id');
-            $table->foreign('sekolah_id')->references('id')->on('schools')->onusersDelete('cascade');
-            $table->foreign('jurusan_id')->references('id')->on('jurusans')->onDelete('cascade');
+            // $table->foreign('sekolah_id')->references('id')->on('schools')->onusersDelete('cascade');
+            // $table->foreign('jurusan_id')->references('id')->on('jurusans')->onDelete('cascade');
             $table->timestamps();
         });
     }

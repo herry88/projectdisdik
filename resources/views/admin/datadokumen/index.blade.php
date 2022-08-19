@@ -24,160 +24,41 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
+                      @foreach ($data as $task)
                         <div class="col-sm-4 d-inline-block">
                             <div class="card border" id="mycard-dimiss">
                                 <div class="card-header bg-primary">
-                                  <h4 class="text-light">MoU dengan Industri /kelas Industri</h4>
+                                  <h4 class="text-light">{{ $task->task_name }}</h4>
                                   <!-- card dismiss toggle -->
                                   <div class="card-header-action">
                                     <a data-dismiss="#mycard-dimiss" class="btn btn-icon"><i class="ion ion-close"></i></a>
                                   </div>
                                 </div>
                                 <div class="card-body">
-                                  <p>Description</p>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="d-inline-block">
-                                        <span class="badge border border-primary text-primary rounded-3 mt-1">On Progress</span>
-                                    </div>
-                                    <div class="float-right">
-                                        <a href="#" class="btn btn-primary">Selesaikan</a>
-                                    </div>
-                                </div>
-                              </div>
-                        </div>
-                        <div class="col-sm-4 d-inline-block">
-                            <div class="card border" id="mycard-dimiss">
-                                <div class="card-header bg-primary">
-                                  <h4 class="text-light">Sinkronisasi Kurikulum dengan Industri</h4>
-                                  <!-- card dismiss toggle -->
-                                  <div class="card-header-action">
-                                    <a data-dismiss="#mycard-dimiss" class="btn btn-icon"><i class="ion ion-close"></i></a>
+                                  <div class="mt-2">
+                                    <span class="text-warning fas fa-star"></span>
+                                    <span class="text-secondary">{{ $task->score }} Score</span>
+                                  </div>
+                                  <div class="mt-2">
+                                    <span class="text-info fas fa-layer-group"></span>
+                                    <span class="text-secondary">Level {{ $task->stage }}</span>
+                                  </div>
+                                  <div class="mt-2">
+                                    <span class="text-primary fas fa-calendar"></span>
+                                    <span class="text-secondary">{{ Carbon\Carbon::parse($task->created_at)->toDateString() }}</span>
                                   </div>
                                 </div>
-                                <div class="card-body">
-                                  <p>Description</p>
-                                </div>
                                 <div class="card-footer">
                                     <div class="d-inline-block">
                                         <span class="badge border border-primary text-primary rounded-3 mt-1">On Progress</span>
                                     </div>
                                     <div class="float-right">
-                                        <a href="#" class="btn btn-primary">Selesaikan</a>
+                                        <a href="{{ route('datadokumen.show', $task->id) }}" class="btn btn-primary">Selesaikan</a>
                                     </div>
                                 </div>
                               </div>
                         </div>
-                        <div class="col-sm-4 d-inline-block">
-                            <div class="card border" id="mycard-dimiss">
-                                <div class="card-header bg-primary">
-                                  <h4 class="text-light">Kelas Industri Seleksi/ Perekrutan kelas Industri.</h4>
-                                  <!-- card dismiss toggle -->
-                                  <div class="card-header-action">
-                                    <a data-dismiss="#mycard-dimiss" class="btn btn-icon"><i class="ion ion-close"></i></a>
-                                  </div>
-                                </div>
-                                <div class="card-body">
-                                  <p>Description</p>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="d-inline-block">
-                                        <span class="badge border border-primary text-primary rounded-3 mt-1">On Progress</span>
-                                    </div>
-                                    <div class="float-right">
-                                        <a href="#" class="btn btn-primary">Selesaikan</a>
-                                    </div>
-                                </div>
-                              </div>
-                        </div>
-                        <div class="col-sm-4 d-inline-block">
-                            <div class="card border" id="mycard-dimiss">
-                                <div class="card-header bg-primary">
-                                  <h4 class="text-light">Magang guru di Industri (minimal 50 jam/ semester)</h4>
-                                  <!-- card dismiss toggle -->
-                                  <div class="card-header-action">
-                                    <a data-dismiss="#mycard-dimiss" class="btn btn-icon"><i class="ion ion-close"></i></a>
-                                  </div>
-                                </div>
-                                <div class="card-body">
-                                  <p>Description</p>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="d-inline-block">
-                                        <span class="badge border border-primary text-primary rounded-3 mt-1">On Progress</span>
-                                    </div>
-                                    <div class="float-right">
-                                        <a href="#" class="btn btn-primary">Selesaikan</a>
-                                    </div>
-                                </div>
-                              </div>
-                        </div>
-                        <div class="col-sm-4 d-inline-block">
-                            <div class="card border" id="mycard-dimiss">
-                                <div class="card-header bg-primary">
-                                  <h4 class="text-light">Guru tamu dari Industri (minimal 50 jam/ semester)</h4>
-                                  <!-- card dismiss toggle -->
-                                  <div class="card-header-action">
-                                    <a data-dismiss="#mycard-dimiss" class="btn btn-icon"><i class="ion ion-close"></i></a>
-                                  </div>
-                                </div>
-                                <div class="card-body">
-                                  <p>Description</p>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="d-inline-block">
-                                        <span class="badge border border-primary text-primary rounded-3 mt-1">On Progress</span>
-                                    </div>
-                                    <div class="float-right">
-                                        <a href="#" class="btn btn-primary">Selesaikan</a>
-                                    </div>
-                                </div>
-                              </div>
-                        </div>
-                        <div class="col-sm-4 d-inline-block">
-                            <div class="card border" id="mycard-dimiss">
-                                <div class="card-header bg-primary">
-                                  <h4 class="text-light">Uji Sertifikasi Kompetensi yang mengacu kepada SKKNI</h4>
-                                  <!-- card dismiss toggle -->
-                                  <div class="card-header-action">
-                                    <a data-dismiss="#mycard-dimiss" class="btn btn-icon"><i class="ion ion-close"></i></a>
-                                  </div>
-                                </div>
-                                <div class="card-body">
-                                  <p>Description</p>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="d-inline-block">
-                                        <span class="badge border border-primary text-primary rounded-3 mt-1">On Progress</span>
-                                    </div>
-                                    <div class="float-right">
-                                        <a href="#" class="btn btn-primary">Selesaikan</a>
-                                    </div>
-                                </div>
-                              </div>
-                        </div>
-                        <div class="col-sm-4 d-inline-block">
-                            <div class="card border" id="mycard-dimiss">
-                                <div class="card-header bg-primary">
-                                  <h4 class="text-light">Perekrutan Tamatan dari Industri yang melaksanakan MoU</h4>
-                                  <!-- card dismiss toggle -->
-                                  <div class="card-header-action">
-                                    <a data-dismiss="#mycard-dimiss" class="btn btn-icon"><i class="ion ion-close"></i></a>
-                                  </div>
-                                </div>
-                                <div class="card-body">
-                                  <p>Description</p>
-                                </div>
-                                <div class="card-footer">
-                                    <div class="d-inline-block">
-                                        <span class="badge border border-primary text-primary rounded-3 mt-1">On Progress</span>
-                                    </div>
-                                    <div class="float-right">
-                                        <a href="#" class="btn btn-primary">Selesaikan</a>
-                                    </div>
-                                </div>
-                              </div>
-                        </div>
+                      @endforeach
                     </div>
                 </div>
             </div>

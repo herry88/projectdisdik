@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Task;
 
 class DokumenController extends Controller
 {
@@ -13,28 +14,17 @@ class DokumenController extends Controller
      */
     public function index()
     {
-        return view('admin.datadokumen.index');
+        $data = Task::all();
+        return view('admin.datadokumen.index', ['data' => $data]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $data = [
+            'id' => $request->id,
+            'data' => $request->all()
+        ];
+        return response()->json($data, 200);
     }
 
     /**
@@ -45,7 +35,8 @@ class DokumenController extends Controller
      */
     public function show($id)
     {
-        return view('admin.datadokumen.show');
+        $data = Task::find($id);
+        return view('admin.datadokumen.show', ['data' => $data]);
     }
 
     /**

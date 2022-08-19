@@ -19,8 +19,8 @@ return new class extends Migration
             $table->string('namaalumni', 100)->nullable();
             $table->string('tahun_lulus', 100)->nullable();
             $table->unsignedBigInteger('jurusan_id');
-            $table->foreign('jurusan_id')->references('id')->on('jurusans')->onDelete('cascade');
-            $table->enum('sasaran', ['kosong', 'wirausaha','bekerja'])->nullable();
+            // $table->foreign('jurusan_id')->references('id')->on('jurusans')->onDelete('cascade');
+            // $table->enum('sasaran', ['kosong', 'wirausaha','bekerja'])->nullable();
 
             $table->timestamps();
         });

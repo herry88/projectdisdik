@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('alamat')->nullable();
             $table->unsignedBigInteger('wilayah_dki_id');
             $table->unsignedBigInteger('tahun_akademik_id');
-            $table->unsignedBigInteger('jurusan_id');
-            $table->foreign('tahun_akademik_id')->references('id')->on('tahun_akademiks')->onDelete('cascade');
-            $table->foreign('jurusan_id')->references('id')->on('jurusans')->onDelete('cascade');
-            $table->foreign('wilayah_dki_id')->references('id')->on('wilayah_d_k_i_s')->onDelete('cascade');
+            $table->BigInteger('jurusan_id')->unsigned();
+            // $table->foreign('tahun_akademik_id')->references('id')->on('tahun_akademiks')->onDelete('cascade');
+            // $table->foreign('jurusan_id')->references('id')->on('jurusans')->onDelete('cascade');
+            // $table->foreign('wilayah_dki_id')->references('id')->on('wilayah_d_k_i_s')->onDelete('cascade');
             $table->timestamps();
         });
     }
